@@ -1,0 +1,55 @@
+let city = document.querySelector("#search-input");
+let day = document.querySelector("#weather_day");
+var forecast ;
+var date = moment().format("D/M/YYYY");
+
+let temperature = document.querySelector(".temperature");
+let wind = document.querySelector(".wind");
+let humidity = document.querySelector(".humidity");
+let image = document.querySelector(".weatherImg");
+
+let weatherAPIkey = "&appid=97a22b39d966b4d7e066e02360d60d67";
+let queryURL = "https://api.openweathermap.org/data/2.5/forecast?q=" + city + weatherAPIkey;
+
+let weatherEndPoint = "api.openweathermap.org/data/2.5/forecast?lat={lat}&lon={lon}&appid={API key}";
+
+// function getWeatherInfo()
+// {
+// $.ajax({
+//     url: queryURL,
+//     method: 'GET'
+// }).then => (function(response)
+// {
+//     console.log(response);
+// })
+// };
+
+// &appid=836d5aa760eed71ca3c64381a74cc400 antoniokey
+
+function getInfo() 
+{
+    var city = $("#search-input").val().trim();
+    var queryURL = "https://api.openweathermap.org/data/2.5/forecast?q=" + city + weatherAPIkey;
+       // console.log(city)
+        $.ajax({
+            url: queryURL,
+            method: "GET"
+        }).then(function(response){
+              console.log(response)
+
+    });
+}
+// READS API TO GET LON AND LAT COORDS
+// var lat = response[0].lat.toString();
+// var lon = response[0].lon.toString();
+
+//function to read city from localStorage
+function getCityList() {
+    var cityList;
+    if (localStorage.getItem("cityList") != undefined) {
+        cityList =  JSON.parse(localStorage.getItem("cityList"));
+        cityBtns(cityList);
+        return;
+    }
+    return;
+}

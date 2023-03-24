@@ -1,0 +1,61 @@
+:root 
+{
+    --textcolor: white;
+    --gradientcolor1: #37B7ED;
+    --gradientcolor2: white; 
+    --textcolor: white;
+    --secondarytextcolor: black;
+}
+
+*
+{
+    font-family: 'Outfit' sans-serif, 'Verdana', 'Arial' ;
+    scroll-behavior: smooth;
+    margin: 0;
+    padding: 0;  
+    letter-spacing: 2px;;
+}
+
+body
+{
+    background-image: url('./images/bk2.jpg');
+}
+
+/* .displayTemp
+{
+   
+} */
+
+#headerWeather
+{
+    background: linear-gradient(90deg, rgba(0,109,150,1) 42%, rgba(180,237,255,1) 100%);
+}
+
+#headerWeather
+{
+   
+    background-color: #37B7ED;
+}
+
+/* weather icon / image */
+.weather_image
+{
+    width: 40%;
+    height: 40%;
+}
+
+/* removing bulletpoints from list */
+ul
+{
+    list-style-type: none;
+}
+
+/* search button styling */
+#search-button
+{
+    background: linear-gradient(90deg, rgba(172,187,163,1) 8%, rgba(14,242,255,1) 100%);
+    border: 2px solid black;
+    color: black;
+    border-radius: 10px;
+    
+}
