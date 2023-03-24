@@ -69,7 +69,7 @@ function getInfo()
  $(".fiveDaysWind").text("Wind: " + response.list[39].wind.speed + "KPH");
  $(".fiveDaysHum").text("Humidity: " + response.list[39].main.humidity + "%");
 
- // Getting the icon
+ // displaying weather icon
  $.getJSON("https://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=836d5aa760eed71ca3c64381a74cc400", function(data) {
     var iconCode = data.weather[0].icon;
     var iconURL = "http://openweathermap.org/img/w/"  + iconCode + ".png" ;
@@ -80,3 +80,65 @@ function getInfo()
         
     })
 }
+
+//funtion to display the city searched
+function listGroup()
+{
+    $("#history").empty();
+   
+    for (var i = 0; i < cityList.length; i++) {
+       
+        var historyEl = $("<button class='btnList'>") ; 
+        
+        historyEl.text(cityList[i].toUpperCase());
+        $("#history").append(historyEl)
+        
+
+    }
+    
+}
+
+//Search button event listener
+$("#search-button").on("click", function(event)
+{
+    event.preventDefault()
+    var city = $("#search-input").val().trim();
+    if(city == "") return;
+    $(".hide").removeClass("hide")
+    
+    //var cityList
+    
+    cityList.push(city);
+    localStorage.setItem("cities", JSON.stringify(cityList))
+    
+    
+  
+    listGroup();
+    getInfo();
+
+});
+
+//clear button
+$("#clear-button").on("click", function(event){
+    event.preventDefault();
+    $("#history").empty();
+    localStorage.removeItem("cities")
+})
+
+//function to retrieve the information
+function loadPage() {
+    var citySearch = JSON.parse(localStorage.getItem("cities"));
+        
+       
+        if(citySearch == "") return;
+        
+        for(var i = 0; i < citySearch.length; i++){
+        var pButton = $("<button>")
+        pButton.addClass("btnList")
+        pButton.text(citySearch[i].toUpperCase())
+        $("#history").append(pButton);          
+   }
+   
+}
+
+ loadPage();
